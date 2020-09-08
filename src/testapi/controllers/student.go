@@ -1,7 +1,8 @@
 package controllers
 
 import (
-	"encoding/json"
+	json "encoding/json"
+	"github.com/astaxie/beego/logs"
 	"testapi/models"
 
 	"github.com/astaxie/beego"
@@ -20,7 +21,11 @@ type StudentController struct {
 // @router / [post]
 func (u *StudentController) Post() {
 	var student models.Student
-	json.Unmarshal(u.Ctx.Input.RequestBody, &student)
+	err := json.Unmarshal(u.Ctx.Input.RequestBody, &student)
+	if err != nil {
+		l := logs.GetBeeLogger()
+		l.Error(err.Error())
+	}
 	uid := models.AddStudent(student)
 	u.Data["json"] = map[string]string{"uid": uid}
 	u.ServeJSON()

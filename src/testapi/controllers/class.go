@@ -90,7 +90,7 @@ func (u *ClassController) Delete() {
 	u.ServeJSON()
 }
 
-//APIVersion 1.0.0
+// APIVersion 1.0.0
 // @Title AddStudent
 // @Description add student to class
 // @Param	StudentId ClassId path 	string	true		"The classId"
@@ -109,7 +109,7 @@ func (u *ClassController) AddStudent() {
 	u.ServeJSON()
 }
 
-//APIVersion 1.0.0
+// APIVersion 1.0.0
 // @Title GetAllStudentOfClass
 // @Description get all students of class
 // @Param	ClassId path 	string	true		"The classId"
