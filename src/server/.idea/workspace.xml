@@ -56,12 +56,6 @@
       <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger.yml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization/tests/default_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/controllers/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/controllers/unit.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/controllers/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/controllers/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/lastupdate.tmp" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/lastupdate.tmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/routers/commentsRouter_controllers.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization2/swagger/favicon-16x16.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization2/swagger/favicon-32x32.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization2/swagger/index.html" beforeDir="false" />
@@ -74,10 +68,8 @@
       <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.css.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/tests/default_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server" beforeDir="false" afterPath="$PROJECT_DIR$/server" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

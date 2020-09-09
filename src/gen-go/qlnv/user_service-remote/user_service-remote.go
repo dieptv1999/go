@@ -28,7 +28,7 @@ func Usage() {
   fmt.Fprintln(os.Stderr, "  void updateUser(User u)")
   fmt.Fprintln(os.Stderr, "  void deleteUser(string userId)")
   fmt.Fprintln(os.Stderr, "  Unit getUnitUser(string userId)")
-  fmt.Fprintln(os.Stderr, "   getUserSortedByPage(string userId, i32 numOfPages, i32 sizeOfpage)")
+  fmt.Fprintln(os.Stderr, "   getUserSortedByPage(i32 numOfPages, i32 sizeOfpage, string sortType)")
   fmt.Fprintln(os.Stderr)
   os.Exit(0)
 }
@@ -235,7 +235,12 @@ func main() {
       fmt.Fprintln(os.Stderr, "GetUserSortedByPage requires 3 args")
       flag.Usage()
     }
-    argvalue0 := flag.Arg(1)
+    tmp0, err30 := (strconv.Atoi(flag.Arg(1)))
+    if err30 != nil {
+      Usage()
+      return
+    }
+    argvalue0 := int32(tmp0)
     value0 := argvalue0
     tmp1, err31 := (strconv.Atoi(flag.Arg(2)))
     if err31 != nil {
@@ -244,12 +249,7 @@ func main() {
     }
     argvalue1 := int32(tmp1)
     value1 := argvalue1
-    tmp2, err32 := (strconv.Atoi(flag.Arg(3)))
-    if err32 != nil {
-      Usage()
-      return
-    }
-    argvalue2 := int32(tmp2)
+    argvalue2 := flag.Arg(3)
     value2 := argvalue2
     fmt.Print(client.GetUserSortedByPage(context.Background(), value0, value1, value2))
     fmt.Print("\n")

@@ -377,7 +377,6 @@ func (p *User) GetAddress() string {
 func (p *User) GetUnitId() string {
   return p.UnitId
 }
-
 func (p *User) Read(iprot thrift.TProtocol) error {
   if _, err := iprot.ReadStructBegin(); err != nil {
     return thrift.PrependError(fmt.Sprintf("%T read error: ", p), err)
@@ -755,10 +754,10 @@ type UserService interface {
   //  - UserId
   GetUnitUser(ctx context.Context, userId string) (r *Unit, err error)
   // Parameters:
-  //  - UserId
   //  - NumOfPages
   //  - SizeOfpage
-  GetUserSortedByPage(ctx context.Context, userId string, numOfPages int32, sizeOfpage int32) (r []*User, err error)
+  //  - SortType
+  GetUserSortedByPage(ctx context.Context, numOfPages int32, sizeOfpage int32, sortType string) (r []*User, err error)
 }
 
 type UserServiceClient struct {
@@ -874,14 +873,14 @@ func (p *UserServiceClient) GetUnitUser(ctx context.Context, userId string) (r *
 }
 
 // Parameters:
-//  - UserId
 //  - NumOfPages
 //  - SizeOfpage
-func (p *UserServiceClient) GetUserSortedByPage(ctx context.Context, userId string, numOfPages int32, sizeOfpage int32) (r []*User, err error) {
+//  - SortType
+func (p *UserServiceClient) GetUserSortedByPage(ctx context.Context, numOfPages int32, sizeOfpage int32, sortType string) (r []*User, err error) {
   var _args10 UserServiceGetUserSortedByPageArgs
-  _args10.UserId = userId
   _args10.NumOfPages = numOfPages
   _args10.SizeOfpage = sizeOfpage
+  _args10.SortType = sortType
   var _result11 UserServiceGetUserSortedByPageResult
   if err = p.Client_().Call(ctx, "getUserSortedByPage", &_args10, &_result11); err != nil {
     return
@@ -1219,7 +1218,7 @@ func (p *userServiceProcessorGetUserSortedByPage) Process(ctx context.Context, s
   result := UserServiceGetUserSortedByPageResult{}
 var retval []*User
   var err2 error
-  if retval, err2 = p.handler.GetUserSortedByPage(ctx, args.UserId, args.NumOfPages, args.SizeOfpage); err2 != nil {
+  if retval, err2 = p.handler.GetUserSortedByPage(ctx, args.NumOfPages, args.SizeOfpage, args.SortType); err2 != nil {
   switch v := err2.(type) {
     case *NotFoundException:
   result.Err = v
@@ -2360,13 +2359,13 @@ func (p *UserServiceGetUnitUserResult) String() string {
 }
 
 // Attributes:
-//  - UserId
 //  - NumOfPages
 //  - SizeOfpage
+//  - SortType
 type UserServiceGetUserSortedByPageArgs struct {
-  UserId string `thrift:"userId,1" db:"userId" json:"userId"`
-  NumOfPages int32 `thrift:"numOfPages,2" db:"numOfPages" json:"numOfPages"`
-  SizeOfpage int32 `thrift:"sizeOfpage,3" db:"sizeOfpage" json:"sizeOfpage"`
+  NumOfPages int32 `thrift:"numOfPages,1" db:"numOfPages" json:"numOfPages"`
+  SizeOfpage int32 `thrift:"sizeOfpage,2" db:"sizeOfpage" json:"sizeOfpage"`
+  SortType string `thrift:"sortType,3" db:"sortType" json:"sortType"`
 }
 
 func NewUserServiceGetUserSortedByPageArgs() *UserServiceGetUserSortedByPageArgs {
@@ -2374,16 +2373,16 @@ func NewUserServiceGetUserSortedByPageArgs() *UserServiceGetUserSortedByPageArgs
 }
 
 
-func (p *UserServiceGetUserSortedByPageArgs) GetUserId() string {
-  return p.UserId
-}
-
 func (p *UserServiceGetUserSortedByPageArgs) GetNumOfPages() int32 {
   return p.NumOfPages
 }
 
 func (p *UserServiceGetUserSortedByPageArgs) GetSizeOfpage() int32 {
   return p.SizeOfpage
+}
+
+func (p *UserServiceGetUserSortedByPageArgs) GetSortType() string {
+  return p.SortType
 }
 func (p *UserServiceGetUserSortedByPageArgs) Read(iprot thrift.TProtocol) error {
   if _, err := iprot.ReadStructBegin(); err != nil {
@@ -2399,7 +2398,7 @@ func (p *UserServiceGetUserSortedByPageArgs) Read(iprot thrift.TProtocol) error 
     if fieldTypeId == thrift.STOP { break; }
     switch fieldId {
     case 1:
-      if fieldTypeId == thrift.STRING {
+      if fieldTypeId == thrift.I32 {
         if err := p.ReadField1(iprot); err != nil {
           return err
         }
@@ -2419,7 +2418,7 @@ func (p *UserServiceGetUserSortedByPageArgs) Read(iprot thrift.TProtocol) error 
         }
       }
     case 3:
-      if fieldTypeId == thrift.I32 {
+      if fieldTypeId == thrift.STRING {
         if err := p.ReadField3(iprot); err != nil {
           return err
         }
@@ -2444,10 +2443,10 @@ func (p *UserServiceGetUserSortedByPageArgs) Read(iprot thrift.TProtocol) error 
 }
 
 func (p *UserServiceGetUserSortedByPageArgs)  ReadField1(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadString(); err != nil {
+  if v, err := iprot.ReadI32(); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
-  p.UserId = v
+  p.NumOfPages = v
 }
   return nil
 }
@@ -2456,16 +2455,16 @@ func (p *UserServiceGetUserSortedByPageArgs)  ReadField2(iprot thrift.TProtocol)
   if v, err := iprot.ReadI32(); err != nil {
   return thrift.PrependError("error reading field 2: ", err)
 } else {
-  p.NumOfPages = v
+  p.SizeOfpage = v
 }
   return nil
 }
 
 func (p *UserServiceGetUserSortedByPageArgs)  ReadField3(iprot thrift.TProtocol) error {
-  if v, err := iprot.ReadI32(); err != nil {
+  if v, err := iprot.ReadString(); err != nil {
   return thrift.PrependError("error reading field 3: ", err)
 } else {
-  p.SizeOfpage = v
+  p.SortType = v
 }
   return nil
 }
@@ -2486,32 +2485,32 @@ func (p *UserServiceGetUserSortedByPageArgs) Write(oprot thrift.TProtocol) error
 }
 
 func (p *UserServiceGetUserSortedByPageArgs) writeField1(oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin("userId", thrift.STRING, 1); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:userId: ", p), err) }
-  if err := oprot.WriteString(string(p.UserId)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.userId (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin("numOfPages", thrift.I32, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:numOfPages: ", p), err) }
+  if err := oprot.WriteI32(int32(p.NumOfPages)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.numOfPages (1) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:userId: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:numOfPages: ", p), err) }
   return err
 }
 
 func (p *UserServiceGetUserSortedByPageArgs) writeField2(oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin("numOfPages", thrift.I32, 2); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:numOfPages: ", p), err) }
-  if err := oprot.WriteI32(int32(p.NumOfPages)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.numOfPages (2) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin("sizeOfpage", thrift.I32, 2); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 2:sizeOfpage: ", p), err) }
+  if err := oprot.WriteI32(int32(p.SizeOfpage)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.sizeOfpage (2) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:numOfPages: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 2:sizeOfpage: ", p), err) }
   return err
 }
 
 func (p *UserServiceGetUserSortedByPageArgs) writeField3(oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin("sizeOfpage", thrift.I32, 3); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:sizeOfpage: ", p), err) }
-  if err := oprot.WriteI32(int32(p.SizeOfpage)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.sizeOfpage (3) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin("sortType", thrift.STRING, 3); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 3:sortType: ", p), err) }
+  if err := oprot.WriteString(string(p.SortType)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.sortType (3) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:sizeOfpage: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 3:sortType: ", p), err) }
   return err
 }
 
@@ -2697,8 +2696,8 @@ type UnitService interface {
   //  - U
   UpdateUnit(ctx context.Context, u *Unit) (err error)
   // Parameters:
-  //  - UserId
-  DeleteUnit(ctx context.Context, userId string) (err error)
+  //  - UnitId
+  DeleteUnit(ctx context.Context, unitId string) (err error)
   // Parameters:
   //  - UnitId
   GetAllMemberOfUnit(ctx context.Context, unitId string) (r []*User, err error)
@@ -2786,10 +2785,10 @@ func (p *UnitServiceClient) UpdateUnit(ctx context.Context, u *Unit) (err error)
 }
 
 // Parameters:
-//  - UserId
-func (p *UnitServiceClient) DeleteUnit(ctx context.Context, userId string) (err error) {
+//  - UnitId
+func (p *UnitServiceClient) DeleteUnit(ctx context.Context, unitId string) (err error) {
   var _args39 UnitServiceDeleteUnitArgs
-  _args39.UserId = userId
+  _args39.UnitId = unitId
   var _result40 UnitServiceDeleteUnitResult
   if err = p.Client_().Call(ctx, "deleteUnit", &_args39, &_result40); err != nil {
     return
@@ -3061,7 +3060,7 @@ func (p *unitServiceProcessorDeleteUnit) Process(ctx context.Context, seqId int3
   iprot.ReadMessageEnd()
   result := UnitServiceDeleteUnitResult{}
   var err2 error
-  if err2 = p.handler.DeleteUnit(ctx, args.UserId); err2 != nil {
+  if err2 = p.handler.DeleteUnit(ctx, args.UnitId); err2 != nil {
   switch v := err2.(type) {
     case *NotFoundException:
   result.NotFound = v
@@ -3836,9 +3835,9 @@ func (p *UnitServiceUpdateUnitResult) String() string {
 }
 
 // Attributes:
-//  - UserId
+//  - UnitId
 type UnitServiceDeleteUnitArgs struct {
-  UserId string `thrift:"userId,1" db:"userId" json:"userId"`
+  UnitId string `thrift:"unitId,1" db:"unitId" json:"unitId"`
 }
 
 func NewUnitServiceDeleteUnitArgs() *UnitServiceDeleteUnitArgs {
@@ -3846,8 +3845,8 @@ func NewUnitServiceDeleteUnitArgs() *UnitServiceDeleteUnitArgs {
 }
 
 
-func (p *UnitServiceDeleteUnitArgs) GetUserId() string {
-  return p.UserId
+func (p *UnitServiceDeleteUnitArgs) GetUnitId() string {
+  return p.UnitId
 }
 func (p *UnitServiceDeleteUnitArgs) Read(iprot thrift.TProtocol) error {
   if _, err := iprot.ReadStructBegin(); err != nil {
@@ -3891,7 +3890,7 @@ func (p *UnitServiceDeleteUnitArgs)  ReadField1(iprot thrift.TProtocol) error {
   if v, err := iprot.ReadString(); err != nil {
   return thrift.PrependError("error reading field 1: ", err)
 } else {
-  p.UserId = v
+  p.UnitId = v
 }
   return nil
 }
@@ -3910,12 +3909,12 @@ func (p *UnitServiceDeleteUnitArgs) Write(oprot thrift.TProtocol) error {
 }
 
 func (p *UnitServiceDeleteUnitArgs) writeField1(oprot thrift.TProtocol) (err error) {
-  if err := oprot.WriteFieldBegin("userId", thrift.STRING, 1); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:userId: ", p), err) }
-  if err := oprot.WriteString(string(p.UserId)); err != nil {
-  return thrift.PrependError(fmt.Sprintf("%T.userId (1) field write error: ", p), err) }
+  if err := oprot.WriteFieldBegin("unitId", thrift.STRING, 1); err != nil {
+    return thrift.PrependError(fmt.Sprintf("%T write field begin error 1:unitId: ", p), err) }
+  if err := oprot.WriteString(string(p.UnitId)); err != nil {
+  return thrift.PrependError(fmt.Sprintf("%T.unitId (1) field write error: ", p), err) }
   if err := oprot.WriteFieldEnd(); err != nil {
-    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:userId: ", p), err) }
+    return thrift.PrependError(fmt.Sprintf("%T write field end error 1:unitId: ", p), err) }
   return err
 }
 

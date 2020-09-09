@@ -26,7 +26,7 @@ func Usage() {
   fmt.Fprintln(os.Stderr, "  void createUnit(Unit u)")
   fmt.Fprintln(os.Stderr, "  Unit readUnit(string unitId)")
   fmt.Fprintln(os.Stderr, "  void updateUnit(Unit u)")
-  fmt.Fprintln(os.Stderr, "  void deleteUnit(string userId)")
+  fmt.Fprintln(os.Stderr, "  void deleteUnit(string unitId)")
   fmt.Fprintln(os.Stderr, "   getAllMemberOfUnit(string unitId)")
   fmt.Fprintln(os.Stderr, "   getMembersByPage(string unitId, i32 numOfPage, i32 sizeOfPage)")
   fmt.Fprintln(os.Stderr)
