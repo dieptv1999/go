@@ -95,7 +95,7 @@ func (u *UnitController) Delete() {
 // @Title getAllMember
 // @Description get all members of the Unit
 // @Param	uid		path 	string	true		"The uid you want to delete"
-// @Success 200 {object} list user
+// @Success 200 {object} list-user
 // @Failure 403 uid is empty
 // @router /get-all-member/:uid [get]
 func (u *UnitController) GetAllMemberOfUnit() {
