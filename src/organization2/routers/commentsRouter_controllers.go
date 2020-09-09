@@ -43,6 +43,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["organization2/controllers:UnitController"] = append(beego.GlobalControllerRouter["organization2/controllers:UnitController"],
+        beego.ControllerComments{
+            Method: "GetAllMemberOfUnit",
+            Router: "/get-all-member/:uid",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["organization2/controllers:UserController"] = append(beego.GlobalControllerRouter["organization2/controllers:UserController"],
         beego.ControllerComments{
             Method: "Post",
@@ -82,7 +91,7 @@ func init() {
     beego.GlobalControllerRouter["organization2/controllers:UserController"] = append(beego.GlobalControllerRouter["organization2/controllers:UserController"],
         beego.ControllerComments{
             Method: "GetUserSortedByPage",
-            Router: "/get-by-page/:page/:size/:type",
+            Router: "/get-by-page",
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,

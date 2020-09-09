@@ -116,7 +116,7 @@ func (u *UserController) GetUnitOfUser() {
 // @Param	type	query 	string	true		"parameter require"
 // @Success 200 {object}
 // @Failure 403 uid is empty
-// @router /get-by-page/:page/:size/:type [get]
+// @router /get-by-page [get]
 func (u *UserController) GetUserSortedByPage() {
 	numOfPage, eNum := u.GetInt32(":page")
 	sizeOfPage, eSize := u.GetInt32(":size")

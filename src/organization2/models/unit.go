@@ -78,10 +78,11 @@ func GetAllMemberOfUnit(uid string) (unit []*qlnv.User, err error) {
 		defer transport.Close()
 	}
 	client := GetUnitClient(transport)
-	if unit, err := client.GetAllMemberOfUnit(defaultCtx, uid); err != nil {
+	unit, e := client.GetAllMemberOfUnit(defaultCtx, uid)
+	if e == nil {
 		return unit, nil
 	}
-	return nil, errors.New("Unit not exist")
+	return nil, e
 }
 
 func GetMembersByPage(UnitId string, numOfPages int32, sizeOfpage int32) (r []*qlnv.User, err error) {
@@ -90,7 +91,8 @@ func GetMembersByPage(UnitId string, numOfPages int32, sizeOfpage int32) (r []*q
 		defer transport.Close()
 	}
 	client := GetUnitClient(transport)
-	if r, err := client.GetMembersByPage(defaultCtx, UnitId, numOfPages, sizeOfpage); err != nil {
+	r, e := client.GetMembersByPage(defaultCtx, UnitId, numOfPages, sizeOfpage)
+	if e == nil {
 		return r, nil
 	}
 	return nil, errors.New("Unit not exist")

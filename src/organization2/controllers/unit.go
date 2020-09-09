@@ -91,3 +91,20 @@ func (u *UnitController) Delete() {
 	}
 	u.ServeJSON()
 }
+
+// @Title getAllMember
+// @Description get all members of the Unit
+// @Param	uid		path 	string	true		"The uid you want to delete"
+// @Success 200 {object} list user
+// @Failure 403 uid is empty
+// @router /get-all-member/:uid [get]
+func (u *UnitController) GetAllMemberOfUnit() {
+	uid := u.GetString(":uid")
+	listUser, err := models.GetAllMemberOfUnit(uid)
+	if err != nil {
+		u.Data["json"] = err.Error()
+	} else {
+		u.Data["json"] = listUser
+	}
+	u.ServeJSON()
+}

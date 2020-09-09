@@ -41,7 +41,7 @@ func GetUserClient(transport thrift.TTransport) *qlnv.UserServiceClient {
 }
 
 func AddUser(u qlnv.User) string {
-	u.UserId = string(u.DateOfBirth) + strconv.FormatInt(time.Now().UnixNano(), 10)
+	u.UserId = strconv.FormatInt(u.DateOfBirth, 10) + strconv.FormatInt(time.Now().UnixNano(), 10)
 	var transport = getTransport()
 	if transport != nil {
 		defer transport.Close()
