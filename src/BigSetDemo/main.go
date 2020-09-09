@@ -16,11 +16,12 @@ func main() {
 			Port:      "18407",
 			ServiceID: "BigSetDemo",
 		})
-	bskey := generic.TStringKey("demo")
-	client.BsPutItem(bskey, &generic.TItem{
-		Key:   []byte("tvt"),
-		Value: []byte("1234"),
-	})
+	bskey := generic.TStringKey("user")
+	client.BsPutItem(bskey,
+		&generic.TItem{
+			Key:   []byte("tvt"),
+			Value: []byte("1234"),
+		})
 	item, err := client.BsGetItem(bskey, generic.TItemKey("tvd"))
 	if err != nil {
 		fmt.Println(err)

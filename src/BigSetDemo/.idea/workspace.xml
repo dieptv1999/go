@@ -20,39 +20,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ad77e66-8cb3-4abb-9c01-9cb55b15e866" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../organization/models/unit.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../server/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../bin/testapi" beforeDir="false" afterPath="$PROJECT_DIR$/../../bin/testapi" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../pkg/sumdb/sum.golang.org/latest" beforeDir="false" afterPath="$PROJECT_DIR$/../../pkg/sumdb/sum.golang.org/latest" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/.idea/BT1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/.idea/thriftCompiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/BT1" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/client.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/handler.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BT1/server.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Example.thrift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../add.thrift" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../demo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../demo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/.idea/gorun.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/.idea/thriftCompiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/gorun" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gorun/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/.idea/reflection.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/go.mod" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/go.sum" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/issues.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/out.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../reflection/reflection" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BigSetDemo" beforeDir="false" afterPath="$PROJECT_DIR$/BigSetDemo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Makefile.am" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Makefile.in" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/add/GoUnusedProtection__.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/add/add-consts.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/add/add.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/add/caculate-remote/caculate-remote.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/add/calculate-remote/calculate-remote.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/shared/GoUnusedProtection__.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/shared/shared-consts.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/shared/shared.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/shared/shared_service-remote/shared_service-remote.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/tutorial/GoUnusedProtection__.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/tutorial/calculator-remote/calculator-remote.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/tutorial/tutorial-consts.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gen-go/tutorial/tutorial.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server.crt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../server.key" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,5 +89,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="493" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599580159774">
+      <screen x="54" y="27" width="1312" height="741" />
+    </state>
+    <state x="493" y="155" width="424" height="491" key="FileChooserDialogImpl/54.27.1312.741@54.27.1312.741" timestamp="1599580159774" />
   </component>
 </project>
