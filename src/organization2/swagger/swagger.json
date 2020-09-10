@@ -115,6 +115,49 @@
                 }
             }
         },
+        "/unit/unit-by-page": {
+            "get": {
+                "tags": [
+                    "unit"
+                ],
+                "description": "get unit page",
+                "operationId": "UnitController.get unit  by page",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "parameter require",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "size",
+                        "description": "parameter require",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "type",
+                        "description": "parameter require",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/members"
+                        }
+                    },
+                    "403": {
+                        "description": "page size type is empty"
+                    }
+                }
+            }
+        },
         "/unit/{uid}": {
             "get": {
                 "tags": [

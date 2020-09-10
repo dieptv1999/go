@@ -61,6 +61,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["organization2/controllers:UnitController"] = append(beego.GlobalControllerRouter["organization2/controllers:UnitController"],
+        beego.ControllerComments{
+            Method: "GetUnitsByPage",
+            Router: "/unit-by-page",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["organization2/controllers:UserController"] = append(beego.GlobalControllerRouter["organization2/controllers:UserController"],
         beego.ControllerComments{
             Method: "Post",

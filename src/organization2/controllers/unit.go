@@ -144,8 +144,8 @@ func (u *UnitController) GetMembersByPage() {
 // @Param	type	query 	string	true		"parameter require"
 // @Success 200 {object} members
 // @Failure 403 page size type is empty
-// @router /by-page [get]
-func (u UnitController) GetUnitsByPage() {
+// @router /unit-by-page [get]
+func (u *UnitController) GetUnitsByPage() {
 	defer u.ServeJSON()
 	numOfPage, eNum := strconv.Atoi(u.GetString("page"))
 	sizeOfPage, eSize := strconv.Atoi(u.GetString("size"))
@@ -154,7 +154,7 @@ func (u UnitController) GetUnitsByPage() {
 		return
 	}
 	sortType := u.GetString("type")
-	unit, err := models.GetUnitByPage(int32(numOfPage), int32(sizeOfPage),sortType)
+	unit, err := models.GetUnitByPage(int32(numOfPage), int32(sizeOfPage), sortType)
 	if err != nil {
 		u.Data["json"] = err.Error()
 	} else {
