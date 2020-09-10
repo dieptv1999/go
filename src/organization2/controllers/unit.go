@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"gen-go/qlnv"
-	"organization2/models"
+	"strconv"
 
 	"github.com/astaxie/beego"
+	"organization2/models"
 )
 
 // Operations about Units
@@ -59,11 +60,13 @@ func (u *UnitController) Get() {
 // @router /:uid [put]
 func (u *UnitController) Put() {
 	uid := u.GetString(":uid")
+	defer u.ServeJSON()
 	if uid != "" {
 		var Unit qlnv.Unit
 		e := json.Unmarshal(u.Ctx.Input.RequestBody, &Unit)
 		if e != nil {
 			fmt.Println(e.Error())
+			return
 		}
 		err := models.UpdateUnit(&Unit)
 		if err != nil {
@@ -72,7 +75,6 @@ func (u *UnitController) Put() {
 			u.Data["json"] = "update success"
 		}
 	}
-	u.ServeJSON()
 }
 
 // @Title Delete
@@ -82,6 +84,7 @@ func (u *UnitController) Put() {
 // @Failure 403 uid is empty
 // @router /:uid [delete]
 func (u *UnitController) Delete() {
+	defer u.ServeJSON()
 	uid := u.GetString(":uid")
 	err := models.DeleteUnit(uid)
 	if err != nil {
@@ -89,7 +92,6 @@ func (u *UnitController) Delete() {
 	} else {
 		u.Data["json"] = "delete success!"
 	}
-	u.ServeJSON()
 }
 
 // @Title getAllMember
@@ -97,8 +99,9 @@ func (u *UnitController) Delete() {
 // @Param	uid		path 	string	true		"The uid you want to delete"
 // @Success 200 {object} list-user
 // @Failure 403 uid is empty
-// @router /get-all-member/:uid [get]
+// @router /all-member/:uid [get]
 func (u *UnitController) GetAllMemberOfUnit() {
+	defer u.ServeJSON()
 	uid := u.GetString(":uid")
 	listUser, err := models.GetAllMemberOfUnit(uid)
 	if err != nil {
@@ -106,5 +109,55 @@ func (u *UnitController) GetAllMemberOfUnit() {
 	} else {
 		u.Data["json"] = listUser
 	}
-	u.ServeJSON()
+}
+
+// @Title get member  by page
+// @Description get members page of Unit
+// @Param	unitId	query 	string	true		"parameter require"
+// @Param	page 	query 	string	true		"parameter require"
+// @Param	size	query 	string	true		"parameter require"
+// @Success 200 {object} members
+// @Failure 403 unitId page size is empty
+// @router /member-by-page [get]
+func (u *UnitController) GetMembersByPage() {
+	defer u.ServeJSON()
+	fmt.Println(u.GetString("unitId"))
+	unitId := u.GetString("unitId")
+	numOfPage, eNum := strconv.Atoi(u.GetString("page"))
+	sizeOfPage, eSize := strconv.Atoi(u.GetString("size"))
+	if eNum != nil || eSize != nil {
+		u.Data["json"] = "Syntax error"
+		return
+	}
+	unit, err := models.GetMembersByPage(unitId, int32(numOfPage), int32(sizeOfPage))
+	if err != nil {
+		u.Data["json"] = err.Error()
+	} else {
+		u.Data["json"] = unit
+	}
+}
+
+// @Title get unit  by page
+// @Description get unit page
+// @Param	page 	query 	string	true		"parameter require"
+// @Param	size	query 	string	true		"parameter require"
+// @Param	type	query 	string	true		"parameter require"
+// @Success 200 {object} members
+// @Failure 403 page size type is empty
+// @router /by-page [get]
+func (u UnitController) GetUnitsByPage() {
+	defer u.ServeJSON()
+	numOfPage, eNum := strconv.Atoi(u.GetString("page"))
+	sizeOfPage, eSize := strconv.Atoi(u.GetString("size"))
+	if eNum != nil || eSize != nil {
+		u.Data["json"] = "Syntax error"
+		return
+	}
+	sortType := u.GetString("type")
+	unit, err := models.GetUnitByPage(int32(numOfPage), int32(sizeOfPage),sortType)
+	if err != nil {
+		u.Data["json"] = err.Error()
+	} else {
+		u.Data["json"] = unit
+	}
 }

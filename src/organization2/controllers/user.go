@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gen-go/qlnv"
 	"organization2/models"
+	"strconv"
 
 	"github.com/astaxie/beego"
 )
@@ -21,14 +22,15 @@ type UserController struct {
 // @Failure 403 body is empty
 // @router / [post]
 func (u *UserController) Post() {
+	defer u.ServeJSON()
 	var user qlnv.User
 	err := json.Unmarshal(u.Ctx.Input.RequestBody, &user)
 	if err != nil {
-		fmt.Println(err.Error() + " create user")
+		u.Data["json"] = err.Error()
+		return
 	}
 	uid := models.AddUser(user)
 	u.Data["json"] = map[string]string{"uid": uid}
-	u.ServeJSON()
 }
 
 // @Title Get
@@ -38,6 +40,7 @@ func (u *UserController) Post() {
 // @Failure 403 :uid is empty
 // @router /:uid [get]
 func (u *UserController) Get() {
+	defer u.ServeJSON()
 	uid := u.GetString(":uid")
 	if uid != "" {
 		user, err := models.GetUser(uid)
@@ -47,7 +50,6 @@ func (u *UserController) Get() {
 			u.Data["json"] = user
 		}
 	}
-	u.ServeJSON()
 }
 
 // @Title Update
@@ -58,12 +60,14 @@ func (u *UserController) Get() {
 // @Failure 403 :uid is not int
 // @router /:uid [put]
 func (u *UserController) Put() {
+	defer u.ServeJSON()
 	uid := u.GetString(":uid")
 	if uid != "" {
 		var user qlnv.User
 		e := json.Unmarshal(u.Ctx.Input.RequestBody, &user)
 		if e != nil {
-			fmt.Println(e.Error())
+			u.Data["json"] = e.Error()
+			return
 		}
 		err := models.UpdateUser(&user)
 		if err != nil {
@@ -72,7 +76,6 @@ func (u *UserController) Put() {
 			u.Data["json"] = "update success"
 		}
 	}
-	u.ServeJSON()
 }
 
 // @Title Delete
@@ -82,6 +85,7 @@ func (u *UserController) Put() {
 // @Failure 403 uid is empty
 // @router /:uid [delete]
 func (u *UserController) Delete() {
+	defer u.ServeJSON()
 	uid := u.GetString(":uid")
 	err := models.DeleteUser(uid)
 	if err != nil {
@@ -89,7 +93,6 @@ func (u *UserController) Delete() {
 	} else {
 		u.Data["json"] = "delete success!"
 	}
-	u.ServeJSON()
 }
 
 // @Title UnitOfUser
@@ -97,8 +100,9 @@ func (u *UserController) Delete() {
 // @Param	uid		path 	string	true		"The uid you want to get Unit"
 // @Success 200 {object} qlnv.Unit
 // @Failure 403 uid is empty
-// @router /get-unit/:uid [get]
+// @router /unit/:uid [get]
 func (u *UserController) GetUnitOfUser() {
+	defer u.ServeJSON()
 	uid := u.GetString(":uid")
 	unit, err := models.GetUnitOfUser(uid)
 	if err != nil {
@@ -106,31 +110,30 @@ func (u *UserController) GetUnitOfUser() {
 	} else {
 		u.Data["json"] = unit
 	}
-	u.ServeJSON()
 }
 
 // @Title get by page
 // @Description get page of Users (age)
-// @Param	page 	query 	int		true		"parameter require"
-// @Param	size	query 	int		true		"parameter require"
+// @Param	page 	query 	string		true		"parameter require"
+// @Param	size	query 	string		true		"parameter require"
 // @Param	type	query 	string	true		"parameter require"
 // @Success 200 {object} test
 // @Failure 403 uid is empty
-// @router /get-by-page [get]
+// @router /by-page [get]
 func (u *UserController) GetUserSortedByPage() {
-	numOfPage, eNum := u.GetInt32(":page")
-	sizeOfPage, eSize := u.GetInt32(":size")
+	defer u.ServeJSON()
+	fmt.Println(u.GetString(":page"))
+	numOfPage, eNum := strconv.Atoi(u.GetString("page"))
+	sizeOfPage, eSize := strconv.Atoi(u.GetString("size"))
 	if eNum != nil || eSize != nil {
 		u.Data["json"] = "Syntax error"
-		u.ServeJSON()
 		return
 	}
-	sortType := u.GetString(":type")
-	unit, err := models.GetUserSortedByPage(numOfPage, sizeOfPage, sortType)
+	sortType := u.GetString("type")
+	unit, err := models.GetUserSortedByPage(int32(numOfPage), int32(sizeOfPage), sortType)
 	if err != nil {
 		u.Data["json"] = err.Error()
 	} else {
 		u.Data["json"] = unit
 	}
-	u.ServeJSON()
 }

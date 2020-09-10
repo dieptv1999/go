@@ -86,7 +86,7 @@ paths:
           description: '{string} delete'
         "403":
           description: uid is empty
-  /unit/get-all-member/{uid}:
+  /unit/all-member/{uid}:
     get:
       tags:
       - unit
@@ -105,6 +105,35 @@ paths:
             $ref: '#/definitions/list-user'
         "403":
           description: uid is empty
+  /unit/member-by-page:
+    get:
+      tags:
+      - unit
+      description: get members page of Unit
+      operationId: UnitController.get member  by page
+      parameters:
+      - in: query
+        name: unitId
+        description: parameter require
+        required: true
+        type: string
+      - in: query
+        name: page
+        description: parameter require
+        required: true
+        type: string
+      - in: query
+        name: size
+        description: parameter require
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/members'
+        "403":
+          description: unitId page size is empty
   /user/:
     post:
       tags:
@@ -180,7 +209,7 @@ paths:
           description: '{string} delete'
         "403":
           description: uid is empty
-  /user/get-by-page:
+  /user/by-page:
     get:
       tags:
       - user
@@ -191,14 +220,12 @@ paths:
         name: page
         description: parameter require
         required: true
-        type: integer
-        format: int64
+        type: string
       - in: query
         name: size
         description: parameter require
         required: true
-        type: integer
-        format: int64
+        type: string
       - in: query
         name: type
         description: parameter require
@@ -211,7 +238,7 @@ paths:
             $ref: '#/definitions/test'
         "403":
           description: uid is empty
-  /user/get-unit/{uid}:
+  /user/unit/{uid}:
     get:
       tags:
       - user
@@ -233,6 +260,9 @@ paths:
 definitions:
   list-user:
     title: list-user
+    type: object
+  members:
+    title: members
     type: object
   qlnv.Unit:
     title: Unit

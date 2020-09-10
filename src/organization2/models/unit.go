@@ -97,3 +97,16 @@ func GetMembersByPage(UnitId string, numOfPages int32, sizeOfpage int32) (r []*q
 	}
 	return nil, errors.New("Unit not exist")
 }
+
+func GetUnitByPage(numOfPage int32, sizeOfPage int32, sortType string) (r []*qlnv.Unit, err error) {
+	var transport = getTransport()
+	if transport != nil {
+		defer transport.Close()
+	}
+	client := GetUnitClient(transport)
+	r, e := client.GetUnitsByPage(defaultCtx, numOfPage, sizeOfPage, sortType)
+	if e == nil {
+		return r, nil
+	}
+	return nil, e
+}

@@ -46,7 +46,16 @@ func init() {
     beego.GlobalControllerRouter["organization2/controllers:UnitController"] = append(beego.GlobalControllerRouter["organization2/controllers:UnitController"],
         beego.ControllerComments{
             Method: "GetAllMemberOfUnit",
-            Router: "/get-all-member/:uid",
+            Router: "/all-member/:uid",
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["organization2/controllers:UnitController"] = append(beego.GlobalControllerRouter["organization2/controllers:UnitController"],
+        beego.ControllerComments{
+            Method: "GetMembersByPage",
+            Router: "/member-by-page",
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
@@ -91,7 +100,7 @@ func init() {
     beego.GlobalControllerRouter["organization2/controllers:UserController"] = append(beego.GlobalControllerRouter["organization2/controllers:UserController"],
         beego.ControllerComments{
             Method: "GetUserSortedByPage",
-            Router: "/get-by-page",
+            Router: "/by-page",
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
@@ -100,7 +109,7 @@ func init() {
     beego.GlobalControllerRouter["organization2/controllers:UserController"] = append(beego.GlobalControllerRouter["organization2/controllers:UserController"],
         beego.ControllerComments{
             Method: "GetUnitOfUser",
-            Router: "/get-unit/:uid",
+            Router: "/unit/:uid",
             AllowHTTPMethods: []string{"get"},
             MethodParams: param.Make(),
             Filters: nil,
