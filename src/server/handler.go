@@ -31,11 +31,19 @@ func (u UserServiceHandler) CreateUser(ctx context.Context, user *qlnv.User) (er
 	jsonByte, eJson := json.Marshal(*user)
 	if eJson != nil {
 		fmt.Println("don't convert jsonByte")
+		return eJson
 	}
 	e := db.BsPutItem(bskey, &generic.TItem{
 		Key:   []byte(user.UserId),
 		Value: jsonByte,
 	})
+	eUnit := db.BsPutItem(generic.TStringKey(user.UnitId), &generic.TItem{
+		Key:   []byte(user.UserId),
+		Value: []byte(user.UserId),
+	})
+	if eUnit != nil {
+		return eUnit
+	}
 	if e != nil {
 		return e
 	}
@@ -127,6 +135,7 @@ func (u UserServiceHandler) GetUserSortedByPage(ctx context.Context, numOfPages 
 		eJson := json.Unmarshal(item.Value, &userTmp)
 		if eJson != nil {
 			fmt.Println("error in sort by page")
+			return nil, eJson
 		} else {
 			listUser = append(listUser, &userTmp)
 		}
@@ -228,5 +237,60 @@ func (unit UnitServiceHandler) GetAllMemberOfUnit(ctx context.Context, unitId st
 	return listUser, nil
 }
 func (unit UnitServiceHandler) GetMembersByPage(ctx context.Context, unitId string, numOfPage int32, sizeOfPage int32) (r []*qlnv.User, err error) {
-	return nil, nil
+	bskey := generic.TStringKey(unitId)
+	info, e := db.GetBigSetInfoByName(bskey)
+	if info == nil {
+		return nil, e
+	}
+	listItem, e := db.BsGetSlice(bskey, (numOfPage-1)*sizeOfPage, sizeOfPage)
+	if e != nil {
+		return nil, e
+	}
+	if listItem == nil || len(listItem) == 0 {
+		return nil, errors.New("Page don't exist")
+	}
+	var listUser []*qlnv.User
+	for _, item := range listItem {
+		userData, _ := db.BsGetItem("user", item.Value)
+		if userData == nil {
+			continue
+		}
+		var userTmp qlnv.User
+		eJson := json.Unmarshal(userData.Value, &userTmp)
+		if eJson != nil {
+			fmt.Println("error in sort by page")
+			return nil, eJson
+		} else {
+			listUser = append(listUser, &userTmp)
+		}
+	}
+	return listUser, nil
+}
+func (unit UnitServiceHandler) GetUnitsByPage(ctx context.Context, numOfPages int32, sizeOfpage int32, sortType string) (r []*qlnv.Unit, err error) {
+	bskey := generic.TStringKey("unit")
+	var listItem []*generic.TItem
+	var e error
+	if sortType == "inc" {
+		listItem, e = db.BsGetSlice(bskey, (numOfPages-1)*sizeOfpage, sizeOfpage)
+	} else {
+		listItem, e = db.BsGetSliceR(bskey, (numOfPages-1)*sizeOfpage, sizeOfpage)
+	}
+	if e != nil {
+		return nil, e
+	}
+	if listItem == nil {
+		return nil, errors.New("Page don't exist")
+	}
+	var listUnit []*qlnv.Unit
+	for _, item := range listItem {
+		var unitTmp qlnv.Unit
+		eJson := json.Unmarshal(item.Value, &unitTmp)
+		if eJson != nil {
+			fmt.Println("error in sort by page")
+			return nil, eJson
+		} else {
+			listUnit = append(listUnit, &unitTmp)
+		}
+	}
+	return listUnit, nil
 }

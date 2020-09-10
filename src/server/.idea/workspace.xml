@@ -25,51 +25,18 @@
       <change beforePath="$PROJECT_DIR$/../QLNV.thrift" beforeDir="false" afterPath="$PROJECT_DIR$/../QLNV.thrift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gen-go/qlnv/QLNV.go" beforeDir="false" afterPath="$PROJECT_DIR$/../gen-go/qlnv/QLNV.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../gen-go/qlnv/unit_service-remote/unit_service-remote.go" beforeDir="false" afterPath="$PROJECT_DIR$/../gen-go/qlnv/unit_service-remote/unit_service-remote.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../gen-go/qlnv/user_service-remote/user_service-remote.go" beforeDir="false" afterPath="$PROJECT_DIR$/../gen-go/qlnv/user_service-remote/user_service-remote.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/.idea/organization.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/.idea/thriftCompiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/conf/app.conf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/controllers/object.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/controllers/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/lastupdate.tmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/main.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/models/object.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/models/unit.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/models/user.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/organization" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/routers/router.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/oauth2-redirect.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui-bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui-bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui-standalone-preset.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui-standalone-preset.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger-ui.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/swagger/swagger.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization/tests/default_test.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/favicon-16x16.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/favicon-32x32.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/oauth2-redirect.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui-bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui-bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui-standalone-preset.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui-standalone-preset.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger-ui.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/controllers/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/controllers/unit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/controllers/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/controllers/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/lastupdate.tmp" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/lastupdate.tmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/models/unit.go" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/models/unit.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/organization2" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/organization2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/routers/commentsRouter_controllers.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/swagger/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../organization2/swagger/swagger.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../organization2/swagger/swagger.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server" beforeDir="false" afterPath="$PROJECT_DIR$/server" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +67,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gen-go/qlnv/QLNV.go" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../QLNV.thrift" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -141,13 +108,13 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="493" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599636538443">
+    <state x="493" y="155" width="424" height="491" key="FileChooserDialogImpl" timestamp="1599708872747">
       <screen x="54" y="27" width="1312" height="741" />
     </state>
-    <state x="493" y="155" width="424" height="491" key="FileChooserDialogImpl/54.27.1312.741@54.27.1312.741" timestamp="1599636538443" />
-    <state x="373" y="89" key="search.everywhere.popup" timestamp="1599633950007">
+    <state x="493" y="155" width="424" height="491" key="FileChooserDialogImpl/54.27.1312.741@54.27.1312.741" timestamp="1599708872747" />
+    <state x="373" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1599707627938">
       <screen x="54" y="27" width="1312" height="741" />
     </state>
-    <state x="373" y="89" key="search.everywhere.popup/54.27.1312.741@54.27.1312.741" timestamp="1599633950007" />
+    <state x="373" y="89" width="672" height="678" key="search.everywhere.popup/54.27.1312.741@54.27.1312.741" timestamp="1599707627938" />
   </component>
 </project>
